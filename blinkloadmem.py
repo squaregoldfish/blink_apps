@@ -55,7 +55,7 @@ def _getload():
   return os.getloadavg()[0]
 
 def _getmem():
-  return psutil.virtual_memory()[2]
+  return psutil.virtual_memory().percent
 
 def _setblink(led, rgb):
   cmd = blinkcmd + " -l " + str(led) + " --rgb=" + str(rgb[0]) + "," + str(rgb[1]) + "," + str(rgb[2])
@@ -86,9 +86,6 @@ def _getcolor(value, scaledef):
         preventry = scaledef[i]
         nextentry = scaledef[i + 1]
 
-
-
-
     if preventry["color"] == nextentry["color"]:
       result = preventry["color"]
     else:
@@ -99,10 +96,7 @@ def _getcolor(value, scaledef):
 
       result = [redvalue, greenvalue, bluevalue]
 
-
-
   return result
-
 
 ###################################################
 ##
@@ -118,7 +112,6 @@ def main():
     _setblink(2, memcolor)
 
     time.sleep(5)
-
 
 
 if __name__ == '__main__':
